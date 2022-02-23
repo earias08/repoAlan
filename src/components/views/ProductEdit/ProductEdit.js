@@ -14,6 +14,7 @@ const ProductEdit = ({ URL, getApi }) => {
   const [product, setProduct] = useState({});
   //Parametro
   const { id } = useParams();
+  console.log(id);
   //Referencias
   const productNameRef = useRef("");
   const priceRef = useRef("");
@@ -26,7 +27,9 @@ const ProductEdit = ({ URL, getApi }) => {
     try {
       const res = await fetch(`${URL}/${id}`);
       const productApi = await res.json();
+      console.log(productApi);
       setProduct(productApi);
+      console.log(product);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +49,7 @@ const ProductEdit = ({ URL, getApi }) => {
       Swal.fire("Ops!", "Some data is invalid.", "error");
       return;
     }
-
+    
     //Guardo el objeto
     const productUpdated = {
       productName: productNameRef.current.value,
